@@ -4,3 +4,4 @@
 + feat: integrate Bedrock AI-powered symptom helper
 + test: add Cypress tests for booking flow
 + fix: correct appointment calendar UI alignment
++ chore: upgrade Material-UI to latest version
