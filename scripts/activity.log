@@ -1,2 +1,3 @@
 # Activity Log
 + feat: add patient dashboard component
++ refactor: reorganize components directory
