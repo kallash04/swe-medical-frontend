@@ -13,3 +13,4 @@
 + fix: resolve timezone display issue in schedule
 + fix: resolve timezone display issue in schedule
 + chore: upgrade Material-UI to latest version
++ perf: lazy-load patient list data
