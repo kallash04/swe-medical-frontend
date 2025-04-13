@@ -7,3 +7,4 @@
 + chore: upgrade Material-UI to latest version
 + feat: integrate Bedrock AI-powered symptom helper
 + fix: resolve timezone display issue in schedule
++ feat: add patient dashboard component
