@@ -9,3 +9,4 @@
 + fix: resolve timezone display issue in schedule
 + feat: add patient dashboard component
 + feat: add patient dashboard component
++ refactor: optimize React state for doctor availability
