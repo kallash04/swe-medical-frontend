@@ -14,3 +14,4 @@
 + fix: resolve timezone display issue in schedule
 + chore: upgrade Material-UI to latest version
 + perf: lazy-load patient list data
++ test: add Cypress tests for booking flow
