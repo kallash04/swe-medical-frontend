@@ -17,3 +17,4 @@
 + test: add Cypress tests for booking flow
 + feat: implement history log panel
 + style: standardize form input components
++ style: standardize form input components
