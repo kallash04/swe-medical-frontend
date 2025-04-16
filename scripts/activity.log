@@ -20,3 +20,4 @@
 + style: standardize form input components
 + fix: correct appointment calendar UI alignment
 + fix: resolve timezone display issue in schedule
++ fix: resolve timezone display issue in schedule
