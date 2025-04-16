@@ -18,3 +18,4 @@
 + feat: implement history log panel
 + style: standardize form input components
 + style: standardize form input components
++ fix: correct appointment calendar UI alignment
