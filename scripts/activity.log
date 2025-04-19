@@ -24,3 +24,4 @@
 + refactor: optimize React state for doctor availability
 + refactor: optimize React state for doctor availability
 + fix: correct appointment calendar UI alignment
++ fix: correct appointment calendar UI alignment
