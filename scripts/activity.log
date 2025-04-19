@@ -30,3 +30,4 @@
 + fix: correct appointment calendar UI alignment
 + docs: update frontend API usage in README
 + refactor: optimize React state for doctor availability
++ feat: add patient dashboard component
