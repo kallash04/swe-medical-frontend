@@ -21,3 +21,4 @@
 + fix: correct appointment calendar UI alignment
 + fix: resolve timezone display issue in schedule
 + fix: resolve timezone display issue in schedule
++ refactor: optimize React state for doctor availability
