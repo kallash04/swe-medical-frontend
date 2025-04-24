@@ -33,3 +33,4 @@
 + feat: add patient dashboard component
 + fix: correct appointment calendar UI alignment
 + docs: update frontend API usage in README
++ docs: update frontend API usage in README
