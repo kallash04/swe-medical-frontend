@@ -40,3 +40,4 @@
 + fix: resolve timezone display issue in schedule
 + chore: upgrade Material-UI to latest version
 + docs: update frontend API usage in README
++ refactor: optimize React state for doctor availability
