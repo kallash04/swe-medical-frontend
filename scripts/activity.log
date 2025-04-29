@@ -37,3 +37,4 @@
 + refactor: optimize React state for doctor availability
 + feat: add patient dashboard component
 + fix: correct appointment calendar UI alignment
++ fix: resolve timezone display issue in schedule
