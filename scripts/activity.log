@@ -38,3 +38,4 @@
 + feat: add patient dashboard component
 + fix: correct appointment calendar UI alignment
 + fix: resolve timezone display issue in schedule
++ chore: upgrade Material-UI to latest version
