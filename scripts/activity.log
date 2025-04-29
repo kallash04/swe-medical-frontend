@@ -43,3 +43,4 @@
 + refactor: optimize React state for doctor availability
 + refactor: optimize React state for doctor availability
 + style: standardize form input components
++ perf: lazy-load patient list data
