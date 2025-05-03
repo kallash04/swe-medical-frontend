@@ -47,3 +47,4 @@
 + feat: integrate Bedrock AI-powered symptom helper
 + chore: upgrade Material-UI to latest version
 + fix: correct appointment calendar UI alignment
++ fix: correct appointment calendar UI alignment
