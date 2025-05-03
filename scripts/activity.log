@@ -48,3 +48,4 @@
 + chore: upgrade Material-UI to latest version
 + fix: correct appointment calendar UI alignment
 + fix: correct appointment calendar UI alignment
++ fix: resolve timezone display issue in schedule
