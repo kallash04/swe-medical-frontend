@@ -49,3 +49,4 @@
 + fix: correct appointment calendar UI alignment
 + fix: correct appointment calendar UI alignment
 + fix: resolve timezone display issue in schedule
++ docs: update frontend API usage in README
