@@ -57,3 +57,4 @@
 + feat: implement history log panel
 + style: standardize form input components
 + feat: add patient dashboard component
++ feat: integrate Bedrock AI-powered symptom helper
