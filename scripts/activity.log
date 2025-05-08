@@ -55,3 +55,4 @@
 + feat: add patient dashboard component
 + test: add Cypress tests for booking flow
 + feat: implement history log panel
++ style: standardize form input components
