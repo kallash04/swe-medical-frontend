@@ -63,3 +63,4 @@
 + refactor: optimize React state for doctor availability
 + refactor: reorganize components directory
 + chore: upgrade Material-UI to latest version
++ fix: resolve timezone display issue in schedule
