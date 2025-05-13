@@ -65,3 +65,4 @@
 + chore: upgrade Material-UI to latest version
 + fix: resolve timezone display issue in schedule
 + test: add Cypress tests for booking flow
++ docs: update frontend API usage in README
