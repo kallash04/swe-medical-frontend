@@ -66,3 +66,4 @@
 + fix: resolve timezone display issue in schedule
 + test: add Cypress tests for booking flow
 + docs: update frontend API usage in README
++ fix: correct appointment calendar UI alignment
