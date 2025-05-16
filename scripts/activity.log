@@ -74,3 +74,4 @@
 + perf: lazy-load patient list data
 + test: add Cypress tests for booking flow
 + test: add Cypress tests for booking flow
++ docs: update frontend API usage in README
