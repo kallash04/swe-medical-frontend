@@ -72,3 +72,4 @@
 + perf: lazy-load patient list data
 + feat: add patient dashboard component
 + perf: lazy-load patient list data
++ test: add Cypress tests for booking flow
