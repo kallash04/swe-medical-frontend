@@ -85,3 +85,4 @@
 + refactor: reorganize components directory
 + style: standardize form input components
 + refactor: optimize React state for doctor availability
++ feat: add patient dashboard component
