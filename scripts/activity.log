@@ -82,3 +82,4 @@
 + feat: add patient dashboard component
 + feat: integrate Bedrock AI-powered symptom helper
 + test: add Cypress tests for booking flow
++ refactor: reorganize components directory
