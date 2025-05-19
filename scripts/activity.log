@@ -86,3 +86,4 @@
 + style: standardize form input components
 + refactor: optimize React state for doctor availability
 + feat: add patient dashboard component
++ feat: integrate Bedrock AI-powered symptom helper
