@@ -79,3 +79,4 @@
 + perf: lazy-load patient list data
 + feat: implement history log panel
 + perf: lazy-load patient list data
++ feat: add patient dashboard component
