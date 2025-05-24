@@ -94,3 +94,4 @@
 + perf: lazy-load patient list data
 + feat: implement history log panel
 + refactor: optimize React state for doctor availability
++ style: standardize form input components
