@@ -92,3 +92,4 @@
 + feat: integrate Bedrock AI-powered symptom helper
 + fix: resolve timezone display issue in schedule
 + perf: lazy-load patient list data
++ feat: implement history log panel
