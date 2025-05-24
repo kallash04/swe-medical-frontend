@@ -93,3 +93,4 @@
 + fix: resolve timezone display issue in schedule
 + perf: lazy-load patient list data
 + feat: implement history log panel
++ refactor: optimize React state for doctor availability
