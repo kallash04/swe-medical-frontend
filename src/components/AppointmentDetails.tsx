@@ -1,9 +1,10 @@
-
-import React, { useState, useEffect } from 'react';
-import { X, User, Calendar, Clock, FileText, CheckCircle, XCircle } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { X, User, Calendar, Clock, FileText, CheckCircle, XCircle, Download } from 'lucide-react';
 import { doctorAPI } from '../services/api';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 interface Appointment {
   id: string;
@@ -14,6 +15,7 @@ interface Appointment {
   created_at: string;
   updated_at: string;
   patient_name?: string;
+  user_name?: string;
 }
 
 interface Service {
@@ -57,15 +59,10 @@ const AppointmentDetails: React.FC<AppointmentDetailsProps> = ({
   onUpdate 
 }) => {
   const [services, setServices] = useState<Service[]>([]);
-  const [medicalRecord, setMedicalRecord] = useState<MedicalRecord | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [medicalRecord, setMedicalRecord] = useState<MedicalRecord | null>(null);  const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
 
-  useEffect(() => {
-    fetchAppointmentData();
-  }, [appointment.id]);
-
-  const fetchAppointmentData = async () => {
+  const fetchAppointmentData = useCallback(async () => {
     try {
       const [servicesData, recordData] = await Promise.all([
         doctorAPI.getAppointmentServices(appointment.id),
@@ -79,7 +76,11 @@ const AppointmentDetails: React.FC<AppointmentDetailsProps> = ({
     } finally {
       setLoading(false);
     }
-  };
+  }, [appointment.id, appointment.user_id]);
+
+  useEffect(() => {
+    fetchAppointmentData();
+  }, [fetchAppointmentData]);
 
   const handleCancel = async () => {
     setUpdating(true);
@@ -105,6 +106,91 @@ const AppointmentDetails: React.FC<AppointmentDetailsProps> = ({
     } finally {
       setUpdating(false);
     }
+  };
+
+  const downloadMedicalRecordPDF = () => {
+    if (!medicalRecord) return;
+    
+    const doc = new jsPDF();
+    const patientName = appointment.user_name || 'Patient';
+    const currentDate = new Date().toLocaleDateString();
+    
+    // Add header
+    doc.setFontSize(18);
+    doc.text('Medical Record', 105, 15, { align: 'center' });
+    
+    // Add patient info
+    doc.setFontSize(12);
+    doc.text(`Patient: ${patientName}`, 14, 30);
+    doc.text(`Date: ${currentDate}`, 14, 38);
+    doc.text(`Record ID: ${medicalRecord.id}`, 14, 46);
+    
+    // Add medical info
+    doc.setFontSize(14);
+    doc.text('Medical Information', 14, 60);
+    
+    doc.setFontSize(11);
+    doc.text(`Blood Type: ${medicalRecord.data.bloodType || 'Not specified'}`, 20, 70);
+    
+    // Insurance info
+    if (medicalRecord.data.insurance) {
+      doc.text('Insurance Information:', 14, 85);
+      doc.text(`Provider: ${medicalRecord.data.insurance.provider || 'Not specified'}`, 20, 93);
+      doc.text(`Policy Number: ${medicalRecord.data.insurance.policyNumber || 'Not specified'}`, 20, 101);
+    }
+    
+    // Add allergies
+    const allergiesY = medicalRecord.data.insurance ? 115 : 85;
+    doc.text('Allergies:', 14, allergiesY);
+    if (medicalRecord.data.allergies && medicalRecord.data.allergies.length > 0) {
+      medicalRecord.data.allergies.forEach((allergy, index) => {
+        doc.text(`• ${allergy}`, 20, allergiesY + 8 + (index * 8));
+      });
+    } else {
+      doc.text('None specified', 20, allergiesY + 8);
+    }
+    
+    // Calculate Y position for medications
+    let currentY = allergiesY + 8 + ((medicalRecord.data.allergies?.length || 1) * 8) + 10;
+    
+    // Add medications
+    doc.text('Current Medications:', 14, currentY);
+    if (medicalRecord.data.medications && medicalRecord.data.medications.length > 0) {
+      medicalRecord.data.medications.forEach((medication, index) => {
+        doc.text(`• ${medication}`, 20, currentY + 8 + (index * 8));
+      });
+    } else {
+      doc.text('None specified', 20, currentY + 8);
+    }
+    
+    // Calculate Y position for conditions
+    currentY = currentY + 8 + ((medicalRecord.data.medications?.length || 1) * 8) + 10;
+    
+    // Add conditions
+    doc.text('Medical Conditions:', 14, currentY);
+    if (medicalRecord.data.conditions && medicalRecord.data.conditions.length > 0) {
+      medicalRecord.data.conditions.forEach((condition, index) => {
+        doc.text(`• ${condition}`, 20, currentY + 8 + (index * 8));
+      });
+    } else {
+      doc.text('None specified', 20, currentY + 8);
+    }
+    
+    // Add emergency contact if available
+    if (medicalRecord.data.emergencyContact) {
+      currentY = currentY + 8 + ((medicalRecord.data.conditions?.length || 1) * 8) + 10;
+      doc.text('Emergency Contact:', 14, currentY);
+      doc.text(`Name: ${medicalRecord.data.emergencyContact.name}`, 20, currentY + 8);
+      doc.text(`Phone: ${medicalRecord.data.emergencyContact.phone}`, 20, currentY + 16);
+      doc.text(`Relationship: ${medicalRecord.data.emergencyContact.relationship}`, 20, currentY + 24);
+    }
+    
+    // Add footer
+    doc.setFontSize(10);
+    doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 280);
+    
+    // Save the PDF
+    doc.save(`Medical_Record_${patientName.replace(/\s+/g, '_')}_${currentDate.replace(/\//g, '-')}.pdf`);
   };
 
   const formatTime = (dateTime: string) => {
@@ -158,8 +244,7 @@ const AppointmentDetails: React.FC<AppointmentDetailsProps> = ({
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
+              <div className="grid md:grid-cols-2 gap-4">                <div>
                   <p className="text-sm text-gray-600">Patient</p>
                   <p className="font-medium">{appointment.user_name || 'Patient'}</p>
                 </div>
@@ -230,15 +315,24 @@ const AppointmentDetails: React.FC<AppointmentDetailsProps> = ({
                 <p className="text-gray-500">No services selected</p>
               )}
             </CardContent>
-          </Card>
-
-          {/* Medical Record */}
+          </Card>          {/* Medical Record */}
           {medicalRecord && (
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center">
-                  <FileText className="w-5 h-5 mr-2" />
-                  Medical Record
+                <CardTitle className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <FileText className="w-5 h-5 mr-2" />
+                    Medical Record
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={downloadMedicalRecordPDF}
+                    className="flex items-center gap-1"
+                  >
+                    <Download className="w-4 h-4" />
+                    Download PDF
+                  </Button>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">

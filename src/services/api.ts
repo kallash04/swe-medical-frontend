@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://127.0.0.1:3000';
+const API_BASE_URL = 'http://18.199.132.234:3223';
 
 // Get auth token from localStorage
 const getAuthToken = (): string | null => {
