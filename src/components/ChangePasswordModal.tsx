@@ -55,7 +55,7 @@ const ChangePasswordModal: React.FC<ChangePasswordModalProps> = ({ isOpen, onClo
 
     setLoading(true);
     try {
-      const response = await fetch('http://18.199.132.234:3223/profile/password', {
+      const response = await fetch('http://18.199.132.234:3223/user/profile/password', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
