@@ -151,11 +151,7 @@ const History: React.FC = () => {
           <div className="p-6 border-b border-gray-200">
             <div className="flex flex-wrap gap-2">
               {[
-                { value: 'all', label: 'All Records' },
-                { value: 'visit', label: 'Visits' },
-                { value: 'test', label: 'Tests' },
-                { value: 'prescription', label: 'Prescriptions' },
-                { value: 'note', label: 'Notes' },
+                { value: 'all', label: 'All Records' }
               ].map(tab => (
                 <button
                   key={tab.value}
